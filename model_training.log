@@ -1,0 +1,548 @@
+2025-07-21 22:48:41,335 - INFO - Starting payment processor routing model training pipeline.
+2025-07-21 22:48:41,336 - INFO - Attempting to load data from: payment_route_dataset.csv
+2025-07-21 22:48:41,516 - INFO - Data loaded successfully.
+2025-07-21 22:48:41,516 - INFO - Starting feature engineering...
+2025-07-21 22:48:41,776 - INFO - Feature engineering completed.
+2025-07-21 22:48:41,784 - INFO - Dropped unnecessary columns.
+2025-07-21 22:48:41,810 - INFO - All unique processors identified: ['Braintree', 'Stripe', 'Adyen', 'PayPal']
+2025-07-21 22:48:41,811 - INFO - Performing Train-Test Split...
+2025-07-21 22:48:41,901 - INFO - Train-Test split complete. Train size: 80000, Test size: 20000
+2025-07-21 22:48:41,901 - INFO - Numerical columns for scaling: ['amount', 'latency_ms']
+2025-07-21 22:48:41,901 - INFO - Categorical columns for OneHot Encoding: ['currency', 'processor', 'country', 'time_of_day']
+2025-07-21 22:48:41,901 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-21 22:48:41,902 - INFO - Applying feature transformation to training and test sets...
+2025-07-21 22:48:42,023 - INFO - X_train_transformed shape: (80000, 22)
+2025-07-21 22:48:42,024 - INFO - X_test_transformed shape: (20000, 22)
+2025-07-21 22:48:42,024 - INFO - Transforming target column using LabelEncoder...
+2025-07-21 22:48:42,040 - INFO - Original target classes: ['failed' 'success']
+2025-07-21 22:48:42,043 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-21 22:48:42,046 - INFO - Starting Grid Search for best model parameters...
+2025-07-21 22:57:47,677 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 200}
+2025-07-21 22:57:47,682 - INFO - Best cross-validation score (f1_weighted): 0.8079
+2025-07-21 22:57:47,682 - INFO - Evaluating the best model...
+2025-07-21 22:57:48,630 - INFO - ### Accuracy of Best Model: 0.8526 ###
+2025-07-21 22:57:48,717 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.16      0.04      0.06      2577
+     success       0.87      0.97      0.92     17423
+
+    accuracy                           0.85     20000
+   macro avg       0.52      0.50      0.49     20000
+weighted avg       0.78      0.85      0.81     20000
+
+2025-07-21 22:57:49,929 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-21 22:57:49,988 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (20000, 2) instead.
+2025-07-21 22:57:50,586 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-21 22:57:50,623 - INFO - Saving model artifacts to model_artifacts...
+2025-07-21 22:57:52,068 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-21 22:57:52,069 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-21 22:57:52,197 - INFO - Loading model artifacts from model_artifacts...
+2025-07-21 22:57:54,148 - INFO - Model artifacts loaded successfully.
+2025-07-21 22:57:54,149 - INFO - Predicting best processor for new transaction...
+2025-07-21 22:57:54,664 - INFO - Best processor: Adyen with success probability 0.9650
+2025-07-22 13:53:34,121 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 13:53:34,122 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 13:53:34,378 - INFO - Data loaded successfully.
+2025-07-22 13:53:34,378 - INFO - Starting feature engineering...
+2025-07-22 13:53:34,520 - INFO - Feature engineering completed.
+2025-07-22 13:53:34,537 - INFO - Dropped unnecessary columns.
+2025-07-22 13:53:34,575 - INFO - All unique processors identified: ['Processor_B', 'Processor_D', 'Processor_C', 'Processor_A']
+2025-07-22 13:53:34,581 - INFO - Performing Train-Test Split...
+2025-07-22 13:53:34,731 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-22 13:53:34,733 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-22 13:53:34,734 - INFO - Categorical columns for OneHot Encoding: ['currency', 'processor', 'country', 'time_of_day']
+2025-07-22 13:53:34,734 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-22 13:53:34,735 - INFO - Applying feature transformation to training and test sets...
+2025-07-22 13:53:34,856 - INFO - X_train_transformed shape: (40000, 21)
+2025-07-22 13:53:34,856 - INFO - X_test_transformed shape: (10000, 21)
+2025-07-22 13:53:34,857 - INFO - Transforming target column using LabelEncoder...
+2025-07-22 13:53:34,878 - INFO - Original target classes: ['failed' 'success']
+2025-07-22 13:53:34,881 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-22 13:53:34,881 - INFO - Starting Grid Search for best model parameters...
+2025-07-22 14:01:05,069 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 100}
+2025-07-22 14:01:05,070 - INFO - Best cross-validation score (f1_weighted): 0.8496
+2025-07-22 14:01:05,070 - INFO - Evaluating the best model...
+2025-07-22 14:01:05,321 - INFO - ### Accuracy of Best Model: 0.8969 ###
+2025-07-22 14:01:05,372 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.06      0.00      0.00      1017
+     success       0.90      1.00      0.95      8983
+
+    accuracy                           0.90     10000
+   macro avg       0.48      0.50      0.47     10000
+weighted avg       0.81      0.90      0.85     10000
+
+2025-07-22 14:01:08,238 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-22 14:01:08,287 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-22 14:01:08,861 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-22 14:01:08,911 - INFO - Saving model artifacts to model_artifacts...
+2025-07-22 14:01:09,348 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-22 14:01:09,349 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-22 14:01:09,413 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 14:01:10,330 - INFO - Model artifacts loaded successfully.
+2025-07-22 14:01:10,330 - INFO - Predicting best processor for new transaction...
+2025-07-22 14:01:10,927 - INFO - Best processor: Processor_D with success probability 0.9700
+2025-07-22 14:32:23,301 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 14:32:23,302 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 14:32:23,552 - INFO - Model artifacts loaded successfully.
+2025-07-22 14:32:23,552 - INFO - Predicting best processor for new transaction...
+2025-07-22 14:32:23,575 - ERROR - Failed to load artifacts or make a prediction: 'NoneType' object is not iterable
+2025-07-22 14:35:05,558 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 14:35:05,558 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 14:35:05,781 - INFO - Model artifacts loaded successfully.
+2025-07-22 14:35:05,781 - INFO - Predicting best processor for new transaction...
+2025-07-22 14:35:05,787 - ERROR - Failed to load artifacts or make a prediction: 'NoneType' object is not iterable
+2025-07-22 15:07:53,773 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 15:07:53,774 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 15:07:53,925 - INFO - Data loaded successfully.
+2025-07-22 15:07:53,926 - INFO - Starting feature engineering...
+2025-07-22 15:07:53,990 - INFO - Feature engineering completed.
+2025-07-22 15:07:53,997 - INFO - Dropped unnecessary columns.
+2025-07-22 15:07:54,008 - INFO - All unique processors identified: ['Processor_B', 'Processor_D', 'Processor_C', 'Processor_A']
+2025-07-22 15:07:54,008 - INFO - Performing Train-Test Split...
+2025-07-22 15:07:54,059 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-22 15:07:54,060 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-22 15:07:54,061 - INFO - Categorical columns for OneHot Encoding: ['currency', 'processor', 'country', 'time_of_day']
+2025-07-22 15:07:54,061 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-22 15:07:54,061 - INFO - Applying feature transformation to training and test sets...
+2025-07-22 15:07:54,129 - INFO - X_train_transformed shape: (40000, 21)
+2025-07-22 15:07:54,130 - INFO - X_test_transformed shape: (10000, 21)
+2025-07-22 15:07:54,130 - INFO - Transforming target column using LabelEncoder...
+2025-07-22 15:07:54,136 - INFO - Original target classes: ['failed' 'success']
+2025-07-22 15:07:54,138 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-22 15:07:54,138 - INFO - Starting Grid Search for best model parameters...
+2025-07-22 15:17:40,736 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 100}
+2025-07-22 15:17:40,743 - INFO - Best cross-validation score (f1_weighted): 0.8496
+2025-07-22 15:17:40,743 - INFO - Evaluating the best model...
+2025-07-22 15:17:41,194 - INFO - ### Accuracy of Best Model: 0.8969 ###
+2025-07-22 15:17:41,279 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.06      0.00      0.00      1017
+     success       0.90      1.00      0.95      8983
+
+    accuracy                           0.90     10000
+   macro avg       0.48      0.50      0.47     10000
+weighted avg       0.81      0.90      0.85     10000
+
+2025-07-22 15:17:42,776 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-22 15:17:42,835 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-22 15:17:43,571 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-22 15:17:43,643 - INFO - Saving model artifacts to model_artifacts...
+2025-07-22 15:17:44,235 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-22 15:17:44,235 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-22 15:17:44,296 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 15:17:45,251 - INFO - Model artifacts loaded successfully.
+2025-07-22 15:17:45,253 - INFO - Predicting best processor for new transaction...
+2025-07-22 15:17:45,896 - INFO - Best processor: Processor_D with success probability 0.9700
+2025-07-22 15:25:05,501 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 15:25:05,501 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 15:25:05,655 - INFO - Data loaded successfully.
+2025-07-22 15:25:05,656 - INFO - Starting feature engineering...
+2025-07-22 15:25:05,708 - INFO - Feature engineering completed.
+2025-07-22 15:25:05,715 - INFO - Dropped unnecessary columns.
+2025-07-22 15:25:05,724 - INFO - All unique processors identified: ['Processor_B', 'Processor_D', 'Processor_C', 'Processor_A']
+2025-07-22 15:25:05,724 - INFO - Performing Train-Test Split...
+2025-07-22 15:25:05,774 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-22 15:25:05,775 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-22 15:25:05,775 - INFO - Categorical columns for OneHot Encoding: ['currency', 'processor', 'country', 'time_of_day']
+2025-07-22 15:25:05,775 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-22 15:25:05,775 - INFO - Applying feature transformation to training and test sets...
+2025-07-22 15:25:05,842 - INFO - X_train_transformed shape: (40000, 21)
+2025-07-22 15:25:05,842 - INFO - X_test_transformed shape: (10000, 21)
+2025-07-22 15:25:05,842 - INFO - Transforming target column using LabelEncoder...
+2025-07-22 15:25:05,849 - INFO - Original target classes: ['failed' 'success']
+2025-07-22 15:25:05,852 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-22 15:25:05,852 - INFO - Starting Grid Search for best model parameters...
+2025-07-22 15:34:40,628 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 100}
+2025-07-22 15:34:40,631 - INFO - Best cross-validation score (f1_weighted): 0.8496
+2025-07-22 15:34:40,631 - INFO - Evaluating the best model...
+2025-07-22 15:34:40,841 - INFO - ### Accuracy of Best Model: 0.8969 ###
+2025-07-22 15:34:40,898 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.06      0.00      0.00      1017
+     success       0.90      1.00      0.95      8983
+
+    accuracy                           0.90     10000
+   macro avg       0.48      0.50      0.47     10000
+weighted avg       0.81      0.90      0.85     10000
+
+2025-07-22 15:34:42,092 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-22 15:34:42,141 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-22 15:34:42,730 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-22 15:34:42,767 - INFO - Saving model artifacts to model_artifacts...
+2025-07-22 15:34:43,095 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-22 15:34:43,099 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-22 15:34:43,099 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-22 15:34:43,167 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 15:34:43,803 - INFO - Model artifacts loaded successfully.
+2025-07-22 15:34:43,803 - INFO - Predicting best processor for new transaction...
+2025-07-22 15:34:44,297 - INFO - Best processor: Processor_D with success probability 0.9700
+2025-07-22 15:47:13,924 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 15:47:13,925 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 15:47:14,082 - INFO - Data loaded successfully.
+2025-07-22 15:47:14,083 - INFO - Starting feature engineering...
+2025-07-22 15:47:14,145 - INFO - Feature engineering completed.
+2025-07-22 15:47:14,152 - INFO - Dropped unnecessary columns.
+2025-07-22 15:47:14,163 - INFO - All unique processors identified: ['Processor_D', 'Processor_B', 'Processor_A', 'Processor_C']
+2025-07-22 15:47:14,163 - INFO - Performing Train-Test Split...
+2025-07-22 15:47:14,214 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-22 15:47:14,217 - INFO - Numerical columns for scaling: ['amount', 'latency_ms', 'volume']
+2025-07-22 15:47:14,217 - INFO - Categorical columns for OneHot Encoding: ['currency', 'processor', 'country', 'time_of_day']
+2025-07-22 15:47:14,218 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-22 15:47:14,218 - INFO - Applying feature transformation to training and test sets...
+2025-07-22 15:47:14,289 - INFO - X_train_transformed shape: (40000, 21)
+2025-07-22 15:47:14,289 - INFO - X_test_transformed shape: (10000, 21)
+2025-07-22 15:47:14,289 - INFO - Transforming target column using LabelEncoder...
+2025-07-22 15:47:14,298 - INFO - Original target classes: ['failed' 'success']
+2025-07-22 15:47:14,300 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-22 15:47:14,300 - INFO - Starting Grid Search for best model parameters...
+2025-07-22 15:54:05,697 - INFO - Grid Search completed. Best parameters: {'max_depth': 20, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 200}
+2025-07-22 15:54:05,700 - INFO - Best cross-validation score (f1_weighted): 0.9335
+2025-07-22 15:54:05,701 - INFO - Evaluating the best model...
+2025-07-22 15:54:06,143 - INFO - ### Accuracy of Best Model: 0.9385 ###
+2025-07-22 15:54:06,197 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.84      0.66      0.74      1336
+     success       0.95      0.98      0.97      8664
+
+    accuracy                           0.94     10000
+   macro avg       0.90      0.82      0.85     10000
+weighted avg       0.94      0.94      0.94     10000
+
+2025-07-22 15:54:07,331 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-22 15:54:07,388 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-22 15:54:08,045 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-22 15:54:08,085 - INFO - Saving model artifacts to model_artifacts...
+2025-07-22 15:54:09,081 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-22 15:54:09,084 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-22 15:54:09,084 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-22 15:54:09,149 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 15:54:10,365 - INFO - Model artifacts loaded successfully.
+2025-07-22 15:54:10,366 - INFO - Predicting best processor for new transaction...
+2025-07-22 15:54:10,986 - INFO - Best processor: Processor_A with success probability 1.0000
+2025-07-22 16:28:14,135 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 16:28:14,136 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 16:28:14,267 - INFO - Data loaded successfully.
+2025-07-22 16:28:14,267 - INFO - Starting feature engineering...
+2025-07-22 16:28:14,357 - INFO - Feature engineering completed.
+2025-07-22 16:29:51,343 - INFO - Starting payment processor routing model training pipeline.
+2025-07-22 16:29:51,343 - INFO - Attempting to load data from: processor_data.csv
+2025-07-22 16:29:51,565 - INFO - Data loaded successfully.
+2025-07-22 16:29:51,566 - INFO - Starting feature engineering...
+2025-07-22 16:29:51,735 - INFO - Feature engineering completed.
+2025-07-22 16:29:51,745 - INFO - Dropped unnecessary columns.
+2025-07-22 16:29:51,783 - INFO - All unique processors identified: ['Processor_C', 'Processor_A', 'Processor_D', 'Processor_B']
+2025-07-22 16:29:51,787 - INFO - Performing Train-Test Split...
+2025-07-22 16:29:51,863 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-22 16:29:51,865 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-22 16:29:51,865 - INFO - Categorical columns for OneHot Encoding: ['currency', 'country', 'processor', 'time_of_day']
+2025-07-22 16:29:51,867 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-22 16:29:51,868 - INFO - Applying feature transformation to training and test sets...
+2025-07-22 16:29:51,976 - INFO - X_train_transformed shape: (40000, 22)
+2025-07-22 16:29:51,977 - INFO - X_test_transformed shape: (10000, 22)
+2025-07-22 16:29:51,977 - INFO - Transforming target column using LabelEncoder...
+2025-07-22 16:29:51,987 - INFO - Original target classes: ['failed' 'success']
+2025-07-22 16:29:51,989 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-22 16:29:51,990 - INFO - Starting Grid Search for best model parameters...
+2025-07-22 16:36:14,138 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 200}
+2025-07-22 16:36:14,142 - INFO - Best cross-validation score (f1_weighted): 0.9391
+2025-07-22 16:36:14,142 - INFO - Evaluating the best model...
+2025-07-22 16:36:14,538 - INFO - ### Accuracy of Best Model: 0.9406 ###
+2025-07-22 16:36:14,596 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.86      0.63      0.73      1262
+     success       0.95      0.98      0.97      8738
+
+    accuracy                           0.94     10000
+   macro avg       0.90      0.81      0.85     10000
+weighted avg       0.94      0.94      0.94     10000
+
+2025-07-22 16:36:15,680 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-22 16:36:15,746 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-22 16:36:16,397 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-22 16:36:16,443 - INFO - Saving model artifacts to model_artifacts...
+2025-07-22 16:36:17,012 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-22 16:36:17,014 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-22 16:36:17,015 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-22 16:36:17,090 - INFO - Loading model artifacts from model_artifacts...
+2025-07-22 16:36:18,077 - INFO - Model artifacts loaded successfully.
+2025-07-22 16:36:18,077 - INFO - Predicting best processor for new transaction...
+2025-07-22 16:36:18,619 - INFO - Best processor: Processor_A with success probability 1.0000
+2025-07-23 00:13:13,288 - INFO - Starting payment processor routing model training pipeline.
+2025-07-23 00:13:13,288 - INFO - Attempting to load data from: processor_data.csv
+2025-07-23 00:13:13,610 - INFO - Data loaded successfully.
+2025-07-23 00:13:13,611 - INFO - Starting feature engineering...
+2025-07-23 00:13:13,753 - INFO - Feature engineering completed.
+2025-07-23 00:13:13,760 - INFO - Dropped unnecessary columns.
+2025-07-23 00:13:13,779 - INFO - All unique processors identified: ['Processor_C', 'Processor_A', 'Processor_D', 'Processor_B']
+2025-07-23 00:13:13,779 - INFO - Performing Train-Test Split...
+2025-07-23 00:13:13,897 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-23 00:13:13,898 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-23 00:13:13,898 - INFO - Categorical columns for OneHot Encoding: ['currency', 'country', 'processor', 'day_of_week', 'time_of_day']
+2025-07-23 00:13:13,899 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-23 00:13:13,899 - INFO - Applying feature transformation to training and test sets...
+2025-07-23 00:13:14,051 - INFO - X_train_transformed shape: (40000, 29)
+2025-07-23 00:13:14,052 - INFO - X_test_transformed shape: (10000, 29)
+2025-07-23 00:13:14,053 - INFO - Transforming target column using LabelEncoder...
+2025-07-23 00:13:14,067 - INFO - Original target classes: ['failed' 'success']
+2025-07-23 00:13:14,070 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-23 00:13:14,071 - INFO - Starting Grid Search for best model parameters...
+2025-07-23 00:20:29,875 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 200}
+2025-07-23 00:20:29,881 - INFO - Best cross-validation score (f1_weighted): 0.9394
+2025-07-23 00:20:29,882 - INFO - Evaluating the best model...
+2025-07-23 00:20:30,221 - INFO - ### Accuracy of Best Model: 0.9420 ###
+2025-07-23 00:20:30,275 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.87      0.64      0.74      1262
+     success       0.95      0.99      0.97      8738
+
+    accuracy                           0.94     10000
+   macro avg       0.91      0.81      0.85     10000
+weighted avg       0.94      0.94      0.94     10000
+
+2025-07-23 00:20:33,694 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-23 00:20:33,740 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-23 00:20:34,468 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-23 00:20:34,517 - INFO - Saving model artifacts to model_artifacts...
+2025-07-23 00:20:35,074 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-23 00:20:35,076 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-23 00:20:35,077 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-23 00:20:35,150 - INFO - Loading model artifacts from model_artifacts...
+2025-07-23 00:20:36,157 - INFO - Model artifacts loaded successfully.
+2025-07-23 00:20:36,161 - INFO - Predicting best processor for new transaction...
+2025-07-23 00:20:37,054 - INFO - Best processor: Processor_A with success probability 1.0000
+2025-07-23 22:41:55,092 - INFO - Starting payment processor routing model training pipeline.
+2025-07-23 22:41:55,092 - INFO - Attempting to load data from: processor_data.csv
+2025-07-23 22:41:55,294 - INFO - Data loaded successfully.
+2025-07-23 22:41:55,294 - INFO - Starting feature engineering...
+2025-07-23 22:41:55,416 - INFO - Feature engineering completed.
+2025-07-23 22:41:55,423 - INFO - Dropped unnecessary columns.
+2025-07-23 22:41:55,438 - INFO - All unique processors identified: ['Processor_D', 'Processor_B', 'Processor_A', 'Processor_C']
+2025-07-23 22:41:55,439 - INFO - Performing Train-Test Split...
+2025-07-23 22:41:55,496 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-23 22:41:55,498 - INFO - Numerical columns for scaling: ['amount', 'volume', 'latency_ms']
+2025-07-23 22:41:55,499 - INFO - Categorical columns for OneHot Encoding: ['currency', 'country', 'processor', 'payment_method', 'merchant_category', 'day_of_week', 'time_of_day']
+2025-07-23 22:41:55,499 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-23 22:41:55,500 - INFO - Applying feature transformation to training and test sets...
+2025-07-23 22:41:55,624 - INFO - X_train_transformed shape: (40000, 37)
+2025-07-23 22:41:55,625 - INFO - X_test_transformed shape: (10000, 37)
+2025-07-23 22:41:55,625 - INFO - Transforming target column using LabelEncoder...
+2025-07-23 22:41:55,633 - INFO - Original target classes: ['failed' 'success']
+2025-07-23 22:41:55,636 - INFO - Setting up RandomForestClassifier for hyperparameter tuning...
+2025-07-23 22:41:55,637 - INFO - Starting Grid Search for best model parameters...
+2025-07-23 22:48:35,108 - INFO - Grid Search completed. Best parameters: {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'n_estimators': 50}
+2025-07-23 22:48:35,109 - INFO - Best cross-validation score (f1_weighted): 0.9445
+2025-07-23 22:48:35,109 - INFO - Evaluating the best model...
+2025-07-23 22:48:35,228 - INFO - ### Accuracy of Best Model: 0.9488 ###
+2025-07-23 22:48:35,281 - INFO - 
+### Classification Report of Best Model ###
+              precision    recall  f1-score   support
+
+      failed       0.88      0.64      0.74      1147
+     success       0.95      0.99      0.97      8853
+
+    accuracy                           0.95     10000
+   macro avg       0.92      0.81      0.86     10000
+weighted avg       0.95      0.95      0.95     10000
+
+2025-07-23 22:48:37,859 - INFO - Confusion Matrix plot saved to plots/confusion_matrix.png
+2025-07-23 22:48:37,916 - WARNING - Could not calculate ROC AUC score: y should be a 1d array, got an array of shape (10000, 2) instead.
+2025-07-23 22:48:38,511 - INFO - Precision-Recall Curve plot saved to plots/precision_recall_curve.png
+2025-07-23 22:48:38,560 - INFO - Saving model artifacts to model_artifacts...
+2025-07-23 22:48:38,709 - INFO - Model, feature preprocessor, target transformer, columns, and dtypes saved successfully.
+2025-07-23 22:48:38,711 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-23 22:48:38,711 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-23 22:48:38,740 - INFO - Loading model artifacts from model_artifacts...
+2025-07-23 22:48:39,101 - INFO - Model artifacts loaded successfully.
+2025-07-23 22:48:39,103 - INFO - Predicting best processor for new transaction...
+2025-07-23 22:48:39,566 - INFO - Best processor: Processor_B with success probability 1.0000
+2025-07-26 13:53:03,370 - INFO - Starting payment processor routing model training pipeline.
+2025-07-26 13:53:03,370 - INFO - Attempting to load data from: processor_data.csv
+2025-07-26 13:53:03,576 - INFO - Data loaded successfully.
+2025-07-26 13:53:03,576 - INFO - Starting feature engineering...
+2025-07-26 13:53:03,726 - INFO - Feature engineering completed.
+2025-07-26 13:53:03,732 - INFO - Dropped unnecessary columns.
+2025-07-26 13:53:03,748 - INFO - All unique processors identified: ['Processor_D', 'Processor_B', 'Processor_A', 'Processor_C']
+2025-07-26 13:53:03,748 - INFO - Performing Train-Test Split...
+2025-07-26 13:53:03,774 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-26 13:53:03,774 - INFO - Numerical columns for scaling: ['amount', 'volume']
+2025-07-26 13:53:03,774 - INFO - Categorical columns for OneHot Encoding: ['currency', 'country', 'processor', 'payment_method', 'merchant_category', 'day_of_week', 'time_of_day']
+2025-07-26 13:53:03,774 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-26 13:53:03,774 - INFO - Applying feature transformation to training and test sets...
+2025-07-26 13:53:03,987 - INFO - X_train_transformed shape: (40000, 35)
+2025-07-26 13:53:03,987 - INFO - X_test_transformed shape: (10000, 35)
+2025-07-26 13:53:03,987 - INFO - Target column (latency) will not be transformed for regression.
+2025-07-26 13:53:03,995 - INFO - Setting up RandomForestRegressor for hyperparameter tuning...
+2025-07-26 13:53:03,995 - INFO - Starting Grid Search for best model parameters...
+2025-07-26 14:19:14,996 - INFO - Grid Search completed. Best parameters: {'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'n_estimators': 200}
+2025-07-26 14:19:15,002 - INFO - Best cross-validation score (neg_mean_absolute_error): -18.9478
+2025-07-26 14:19:15,002 - INFO - Evaluating the best model...
+2025-07-26 14:19:15,210 - INFO - ### Mean Absolute Error (MAE) of Best Model: 18.8299 ###
+2025-07-26 14:19:15,210 - INFO - ### Root Mean Squared Error (RMSE) of Best Model: 27.7175 ###
+2025-07-26 14:19:15,210 - INFO - ### R-squared (R2) of Best Model: 0.2681 ###
+2025-07-26 14:19:18,343 - INFO - Residual plot saved to plots/residual_plot.png
+2025-07-26 14:19:18,913 - INFO - True vs. Predicted Latency plot saved to plots/true_vs_predicted.png
+2025-07-26 14:19:18,929 - INFO - Saving model artifacts to model_artifacts...
+2025-07-26 14:19:19,057 - INFO - Model, feature preprocessor, columns, and dtypes saved successfully.
+2025-07-26 14:19:19,057 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-26 14:19:19,057 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-26 14:19:19,085 - INFO - Loading model artifacts from model_artifacts...
+2025-07-26 14:19:19,275 - INFO - Model artifacts loaded successfully.
+2025-07-26 14:19:19,292 - INFO - Predicting best processor for new transaction based on latency...
+2025-07-26 14:19:19,710 - INFO - Best processor: Processor_A with predicted latency 93.5850
+2025-07-26 22:31:57,442 - INFO - Starting payment processor routing model training pipeline.
+2025-07-26 22:31:57,443 - INFO - Attempting to load data from: processor_data.csv
+2025-07-26 22:31:57,585 - INFO - Data loaded successfully.
+2025-07-26 22:31:57,586 - INFO - Starting feature engineering...
+2025-07-26 22:31:57,691 - INFO - Feature engineering completed.
+2025-07-26 22:31:57,700 - INFO - Dropped unnecessary columns.
+2025-07-26 22:31:57,713 - INFO - All unique processors identified: ['Processor_D', 'Processor_C', 'Processor_A', 'Processor_B']
+2025-07-26 22:31:57,714 - INFO - Performing Train-Test Split...
+2025-07-26 22:31:57,729 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-26 22:31:57,730 - INFO - Numerical columns for scaling: ['amount', 'volume']
+2025-07-26 22:31:57,730 - INFO - Categorical columns for OneHot Encoding: ['currency', 'country', 'processor', 'payment_method', 'merchant_category', 'status', 'day_of_week', 'time_of_day']
+2025-07-26 22:31:57,731 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-26 22:31:57,731 - INFO - Applying feature transformation to training and test sets...
+2025-07-26 22:31:57,870 - INFO - X_train_transformed shape: (40000, 57)
+2025-07-26 22:31:57,870 - INFO - X_test_transformed shape: (10000, 57)
+2025-07-26 22:31:57,870 - INFO - Target column (latency) will not be transformed for regression.
+2025-07-26 22:31:57,873 - INFO - Setting up RandomForestRegressor for hyperparameter tuning...
+2025-07-26 22:31:57,874 - INFO - Starting Grid Search for best model parameters...
+2025-07-26 23:01:39,457 - INFO - Grid Search completed. Best parameters: {'max_depth': 10, 'max_features': None, 'min_samples_leaf': 4, 'n_estimators': 200}
+2025-07-26 23:01:39,463 - INFO - Best cross-validation score (neg_mean_absolute_error): -10.6475
+2025-07-26 23:01:39,464 - INFO - Evaluating the best model...
+2025-07-26 23:01:39,669 - INFO - ### Mean Absolute Error (MAE) of Best Model: 10.7115 ###
+2025-07-26 23:01:39,670 - INFO - ### Root Mean Squared Error (RMSE) of Best Model: 14.2163 ###
+2025-07-26 23:01:39,670 - INFO - ### R-squared (R2) of Best Model: 0.6993 ###
+2025-07-26 23:01:42,710 - INFO - Residual plot saved to plots/residual_plot.png
+2025-07-26 23:01:43,180 - INFO - True vs. Predicted Latency plot saved to plots/true_vs_predicted.png
+2025-07-26 23:01:43,204 - INFO - Saving model artifacts to model_artifacts...
+2025-07-26 23:01:43,331 - INFO - Model, feature preprocessor, columns, and dtypes saved successfully.
+2025-07-26 23:01:43,334 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-26 23:01:43,334 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-26 23:01:43,368 - INFO - Loading model artifacts from model_artifacts...
+2025-07-26 23:01:43,546 - INFO - Model artifacts loaded successfully.
+2025-07-26 23:01:43,556 - INFO - Predicting best processor for new transaction based on latency...
+2025-07-26 23:01:43,927 - INFO - Best processor: Processor_A with predicted latency 132.2560
+2025-07-27 20:46:32,978 - INFO - Starting payment processor routing model training pipeline.
+2025-07-27 20:46:32,979 - INFO - Attempting to load data from: processor_data.csv
+2025-07-27 20:46:33,183 - INFO - Data loaded successfully.
+2025-07-27 20:46:33,184 - INFO - Starting feature engineering...
+2025-07-27 20:46:33,283 - INFO - Engineered 'transaction_volume' feature based on 'amount'.
+2025-07-27 20:46:33,284 - INFO - Feature engineering completed.
+2025-07-27 20:46:33,291 - INFO - Dropped unnecessary columns.
+2025-07-27 20:46:33,305 - INFO - All unique processors identified: ['Processor_D', 'Processor_C', 'Processor_A', 'Processor_B']
+2025-07-27 20:46:33,305 - INFO - Performing Train-Test Split...
+2025-07-27 20:46:33,321 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-27 20:46:33,322 - INFO - Numerical columns for scaling: ['amount', 'volume']
+2025-07-27 20:46:33,322 - INFO - Categorical columns for OneHot Encoding: ['processor', 'payment_method', 'merchant_category', 'status', 'day_of_week', 'time_of_day', 'transaction_volume']
+2025-07-27 20:46:33,323 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-27 20:46:33,323 - INFO - Applying feature transformation to training and test sets...
+2025-07-27 20:46:33,438 - INFO - X_train_transformed shape: (40000, 33)
+2025-07-27 20:46:33,439 - INFO - X_test_transformed shape: (10000, 33)
+2025-07-27 20:46:33,439 - INFO - Target column (latency) will not be transformed for regression.
+2025-07-27 20:46:33,442 - INFO - Setting up RandomForestRegressor for hyperparameter tuning...
+2025-07-27 20:46:33,442 - INFO - Starting Grid Search for best model parameters...
+2025-07-27 21:06:41,063 - INFO - Grid Search completed. Best parameters: {'max_depth': 10, 'max_features': None, 'min_samples_leaf': 4, 'n_estimators': 200}
+2025-07-27 21:06:41,068 - INFO - Best cross-validation score (neg_mean_absolute_error): -11.0431
+2025-07-27 21:06:41,068 - INFO - Evaluating the best model...
+2025-07-27 21:06:41,263 - INFO - ### Mean Absolute Error (MAE) of Best Model: 11.1077 ###
+2025-07-27 21:06:41,265 - INFO - ### Root Mean Squared Error (RMSE) of Best Model: 14.6689 ###
+2025-07-27 21:06:41,267 - INFO - ### R-squared (R2) of Best Model: 0.6799 ###
+2025-07-27 21:06:44,900 - INFO - Residual plot saved to plots/residual_plot.png
+2025-07-27 21:06:45,677 - INFO - True vs. Predicted Latency plot saved to plots/true_vs_predicted.png
+2025-07-27 21:06:45,710 - INFO - Saving model artifacts to model_artifacts...
+2025-07-27 21:06:45,979 - INFO - Model, feature preprocessor, columns, and dtypes saved successfully.
+2025-07-27 21:06:45,982 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-27 21:06:45,983 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-27 21:06:46,027 - INFO - Loading model artifacts from model_artifacts...
+2025-07-27 21:06:46,486 - INFO - Model artifacts loaded successfully.
+2025-07-27 21:06:46,504 - INFO - Predicting best processor for new transaction based on latency...
+2025-07-27 21:06:46,523 - WARNING - New transaction data contains unknown column: country. It will be ignored.
+2025-07-27 21:06:46,524 - WARNING - New transaction data contains unknown column: currency. It will be ignored.
+2025-07-27 21:06:47,100 - INFO - Best processor: Processor_A with predicted latency 136.2084
+2025-07-27 21:24:48,536 - INFO - Starting payment processor routing model training pipeline.
+2025-07-27 21:24:48,536 - INFO - Attempting to load data from: processor_data.csv
+2025-07-27 21:24:48,697 - INFO - Data loaded successfully.
+2025-07-27 21:24:48,697 - INFO - Starting feature engineering...
+2025-07-27 21:24:48,815 - INFO - Engineered 'transaction_volume' feature based on 'amount'.
+2025-07-27 21:24:48,815 - INFO - Feature engineering completed.
+2025-07-27 21:24:48,823 - INFO - Dropped unnecessary columns including 'country' and 'currency'.
+2025-07-27 21:24:48,854 - INFO - All unique processors identified: ['Processor_D', 'Processor_C', 'Processor_A', 'Processor_B']
+2025-07-27 21:24:48,854 - INFO - Performing Train-Test Split...
+2025-07-27 21:24:48,866 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-27 21:24:48,866 - INFO - Applying log1p transformation to target variable (latency_ms)...
+2025-07-27 21:24:48,868 - INFO - Target variable transformed successfully.
+2025-07-27 21:24:48,869 - INFO - Numerical columns for scaling: ['amount', 'volume']
+2025-07-27 21:24:48,869 - INFO - Categorical columns for OneHot Encoding: ['processor', 'payment_method', 'merchant_category', 'status', 'day_of_week', 'time_of_day', 'transaction_volume']
+2025-07-27 21:24:48,869 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-27 21:24:48,870 - INFO - Applying feature transformation to training and test sets...
+2025-07-27 21:24:48,988 - INFO - X_train_transformed shape: (40000, 33)
+2025-07-27 21:24:48,989 - INFO - X_test_transformed shape: (10000, 33)
+2025-07-27 21:24:48,991 - INFO - Setting up RandomForestRegressor for hyperparameter tuning...
+2025-07-27 21:24:48,991 - INFO - Starting Grid Search for best model parameters...
+2025-07-27 21:44:57,168 - INFO - Grid Search completed. Best parameters: {'max_depth': 10, 'max_features': None, 'min_samples_leaf': 4, 'n_estimators': 200}
+2025-07-27 21:44:57,172 - INFO - Best cross-validation score (neg_mean_absolute_error): -0.0981
+2025-07-27 21:44:57,172 - INFO - Evaluating the best model...
+2025-07-27 21:44:57,323 - INFO - Predictions inverse transformed for evaluation.
+2025-07-27 21:44:57,335 - INFO - ### Mean Absolute Error (MAE) of Best Model: 11.1266 ###
+2025-07-27 21:44:57,336 - INFO - ### Root Mean Squared Error (RMSE) of Best Model: 14.7135 ###
+2025-07-27 21:44:57,337 - INFO - ### R-squared (R2) of Best Model: 0.6779 ###
+2025-07-27 21:44:58,783 - INFO - Residual plot (transformed target) saved to plots/residual_plot_transformed_target.png
+2025-07-27 21:44:59,493 - INFO - True vs. Predicted Latency plot (transformed target) saved to plots/true_vs_predicted_transformed_target.png
+2025-07-27 21:44:59,537 - INFO - Saving model artifacts to model_artifacts...
+2025-07-27 21:44:59,810 - INFO - Model, feature preprocessor, columns, and dtypes saved successfully.
+2025-07-27 21:44:59,813 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-27 21:44:59,813 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-27 21:44:59,875 - INFO - Loading model artifacts from model_artifacts...
+2025-07-27 21:45:00,188 - INFO - Model artifacts loaded successfully.
+2025-07-27 21:45:00,210 - WARNING - New transaction data contains unknown column: system_volume. It will be ignored.
+2025-07-27 21:45:00,764 - INFO - Best processor: Processor_A with predicted latency 108.7353
+2025-07-29 22:17:10,658 - INFO - Starting payment processor routing model training pipeline.
+2025-07-29 22:17:10,658 - INFO - Attempting to load data from: processor_data.csv
+2025-07-29 22:17:10,884 - INFO - Data loaded successfully.
+2025-07-29 22:17:10,885 - INFO - Starting feature engineering...
+2025-07-29 22:17:11,013 - INFO - Dropped unnecessary columns including 'country' and 'currency'.
+2025-07-29 22:17:11,045 - INFO - All unique processors identified: ['Processor_D', 'Processor_C', 'Processor_A', 'Processor_B']
+2025-07-29 22:17:11,045 - INFO - Performing Train-Test Split...
+2025-07-29 22:17:11,060 - INFO - Train-Test split complete. Train size: 40000, Test size: 10000
+2025-07-29 22:17:11,060 - INFO - Applying log1p transformation to target variable (latency_ms)...
+2025-07-29 22:17:11,063 - INFO - Target variable transformed successfully.
+2025-07-29 22:17:11,064 - INFO - Numerical columns for scaling: ['amount', 'volume']
+2025-07-29 22:17:11,064 - INFO - Categorical columns for OneHot Encoding: ['processor', 'payment_method', 'merchant_category', 'status', 'day_of_week', 'time_of_day']
+2025-07-29 22:17:11,065 - INFO - Creating feature preprocessor (StandardScaler and OneHotEncoder)...
+2025-07-29 22:17:11,065 - INFO - Applying feature transformation to training and test sets...
+2025-07-29 22:17:11,190 - INFO - X_train_transformed shape: (40000, 30)
+2025-07-29 22:17:11,190 - INFO - X_test_transformed shape: (10000, 30)
+2025-07-29 22:17:11,193 - INFO - Setting up RandomForestRegressor for hyperparameter tuning...
+2025-07-29 22:17:11,194 - INFO - Starting Grid Search for best model parameters...
+2025-07-29 22:36:23,592 - INFO - Grid Search completed. Best parameters: {'max_depth': 10, 'max_features': None, 'min_samples_leaf': 4, 'n_estimators': 200}
+2025-07-29 22:36:23,598 - INFO - Best cross-validation score (neg_mean_absolute_error): -0.0981
+2025-07-29 22:36:23,598 - INFO - Evaluating the best model...
+2025-07-29 22:36:23,772 - INFO - Predictions inverse transformed for evaluation.
+2025-07-29 22:36:23,785 - INFO - ### Mean Absolute Error (MAE) of Best Model: 11.1276 ###
+2025-07-29 22:36:23,785 - INFO - ### Root Mean Squared Error (RMSE) of Best Model: 14.7139 ###
+2025-07-29 22:36:23,786 - INFO - ### R-squared (R2) of Best Model: 0.6779 ###
+2025-07-29 22:36:27,781 - INFO - Residual plot (transformed target) saved to plots/residual_plot_transformed_target.png
+2025-07-29 22:36:28,519 - INFO - True vs. Predicted Latency plot (transformed target) saved to plots/true_vs_predicted_transformed_target.png
+2025-07-29 22:36:28,565 - INFO - Saving model artifacts to model_artifacts...
+2025-07-29 22:36:28,816 - INFO - Model, feature preprocessor, columns, and dtypes saved successfully.
+2025-07-29 22:36:28,819 - INFO - All unique processors list saved successfully as an artifact.
+2025-07-29 22:36:28,820 - INFO - Payment processor routing model training pipeline finished successfully.
+2025-07-29 22:36:28,886 - INFO - Loading model artifacts from model_artifacts...
+2025-07-29 22:36:29,336 - INFO - Model artifacts loaded successfully.
+2025-07-29 22:36:29,926 - INFO - Best processor: Processor_A with predicted latency 108.1209
