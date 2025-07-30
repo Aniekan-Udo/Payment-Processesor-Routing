@@ -17,7 +17,7 @@ def load_model_artifacts(model_dir):
     Loads the trained model, preprocessors, and all necessary metadata from disk.
     Uses st.cache_resource to load artifacts only once.
     """
-    st.info(f"Loading model artifacts from {model_dir}...")
+    #st.info(f"Loading model artifacts from {model_dir}...")
     try:
         loaded_model = joblib.load(os.path.join(model_dir, 'random_forest_regressor_model.joblib'))
         loaded_feature_preprocessor = joblib.load(os.path.join(model_dir, 'feature_preprocessor.joblib'))
@@ -25,7 +25,7 @@ def load_model_artifacts(model_dir):
         loaded_X_train_dtypes = joblib.load(os.path.join(model_dir, 'X_train_dtypes.joblib'))
         loaded_all_processors = joblib.load(os.path.join(model_dir, 'all_processors.joblib'))
         
-        st.success("Model artifacts loaded successfully!")
+        #st.success("Model artifacts loaded successfully!")
         return loaded_model, loaded_feature_preprocessor, \
                loaded_X_train_columns, loaded_X_train_dtypes, loaded_all_processors
     except FileNotFoundError as e:
@@ -95,7 +95,7 @@ def predict_best_processor(new_transaction_data, model, feature_preprocessor, al
 
 # --- Streamlit App Layout ---
 
-st.set_page_config(page_title="Dynamic Payment Processor Router", layout="wide") # Simpler title
+st.set_page_config(page_title="Dynamic Payment Processor Router", layout="wide") 
 
 st.title("Dynamic Payment Processor Router")
 

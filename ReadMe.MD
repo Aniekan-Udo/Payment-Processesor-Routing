@@ -1,6 +1,6 @@
 # Payment Processor Routing Model
 
-This repository houses a machine learning pipeline designed to intelligently route payment transactions to the optimal processor. By leveraging historical data, the model predicts the **lowest possible transaction latency** for various processors, enabling efficient and fast payment processing.
+This repository houses a machine learning pipeline designed to intelligently route payment transactions to the optimal processor. By leveraging historical data, the model predicts the **lowest possible transaction latency** of a payment transaction for different processors and then suggest the **processor that would result in the lowest latency**.
 
 
 ## Features
@@ -22,3 +22,5 @@ This project streamlines the process of training and deploying a latency predict
 
 * **Intelligent Prediction Engine**: Provides a dedicated function to predict the best payment processor for new, unseen transactions by estimating latency for each available processor and recommending the one with the lowest predicted value.
 
+## Data
+The data used for this work was generated synthetically. 
